@@ -1,6 +1,6 @@
 {
     "template": "<div oc-lazy-load=\"{ files: [\n                       '/static/habpanel-map-widget/leaflet.css',\n                       '/static/habpanel-map-widget/leaflet.js',\n                       '/static/habpanel-map-widget/leaflet-vector-markers.css',\n                       '/static/habpanel-map-widget/leaflet-vector-markers.min.js',\n                       '/static/habpanel-map-widget/angular-simple-logger.min.js',\n                       '/static/habpanel-map-widget/ui-leaflet.min.js',\n                       '/static/habpanel-map-widget/map.controller.js'\n                     ],\n                     serie: true\n                   }\"\n     style=\"position: absolute; left: 0; top: 0; width: 100%; height: 100%\"\n     data-snap-ignore=\"true\">\n\n  <div ng-controller=\"MapController as vm\"\n       style=\"position: absolute; left: 0; top: 0; width: 100%; height: 100%\">\n    <leaflet center=\"vm.center\"\n             markers=\"vm.markers\"\n             paths=\"vm.paths\"\n             defaults=\"vm.defaults\"\n             legend=\"vm.legend\"\n             style=\"position: absolute; left: 0; top: 0; width: 100%; height: 100%\"></leaflet>\n  </div>\n</div>",
-    "name": "Map",
+    "name": "DWD Strassenwetterservice Map",
     "author": "Yannick Schaus",
     "description": "Displays a map with markers from openHAB Location objects positions",
     "settings": [
@@ -42,6 +42,12 @@
             "description": "Enable this marker"
         },
         {
+            "type": "string",
+            "id": "name1",
+            "label": "Name",
+            "description": "Name of Weather Station (will be displayed)"
+        },
+        {
             "type": "item",
             "id": "item1",
             "label": "openHAB Item",
@@ -54,23 +60,6 @@
             "description": "Glyphicon to use in the marker (without the glyphicon- prefix, examples: star, user), see https://getbootstrap.com/docs/3.3/components/"
         },
         {
-            "type": "color",
-            "id": "color1",
-            "label": "Marker color"
-        },
-        {
-            "type": "checkbox",
-            "id": "showaccuracy1",
-            "label": "Show Accuracy",
-            "description": "Display an accuracy circle (choose item below)"
-        },
-        {
-            "type": "item",
-            "id": "accuracyitem1",
-            "label": "Accuracy Item",
-            "description": "Item of type Number used for drawing an accuracy circle (radius in meters)"
-        },
-        {
             "type": "heading",
             "label": "Marker #2",
             "description": ""
@@ -80,6 +69,12 @@
             "id": "enabled2",
             "label": "Enabled",
             "description": "Enable this marker"
+        },
+        {
+            "type": "string",
+            "id": "name2",
+            "label": "Name",
+            "description": "Name of Weather Station (will be displayed)"
         },
         {
             "type": "item",
@@ -94,23 +89,6 @@
             "description": "Glyphicon to use in the marker (without the glyphicon- prefix, examples: star, user), see https://getbootstrap.com/docs/3.3/components/"
         },
         {
-            "type": "color",
-            "id": "color2",
-            "label": "Marker color"
-        },
-        {
-            "type": "checkbox",
-            "id": "showaccuracy2",
-            "label": "Show Accuracy",
-            "description": "Display an accuracy circle (choose item below)"
-        },
-        {
-            "type": "item",
-            "id": "accuracyitem2",
-            "label": "Accuracy Item",
-            "description": "Item of type Number used for drawing an accuracy circle (radius in meters)"
-        },
-        {
             "type": "heading",
             "label": "Marker #3",
             "description": ""
@@ -120,6 +98,12 @@
             "id": "enabled3",
             "label": "Enabled",
             "description": "Enable this marker"
+        },
+        {
+            "type": "string",
+            "id": "name3",
+            "label": "Name",
+            "description": "Name of Weather Station (will be displayed)"
         },
         {
             "type": "item",
@@ -134,23 +118,6 @@
             "description": "Glyphicon to use in the marker (without the glyphicon- prefix, examples: star, user), see https://getbootstrap.com/docs/3.3/components/"
         },
         {
-            "type": "color",
-            "id": "color3",
-            "label": "Marker color"
-        },
-        {
-            "type": "checkbox",
-            "id": "showaccuracy3",
-            "label": "Show Accuracy",
-            "description": "Display an accuracy circle (choose item below)"
-        },
-        {
-            "type": "item",
-            "id": "accuracyitem3",
-            "label": "Accuracy Item",
-            "description": "Item of type Number used for drawing an accuracy circle (radius in meters)"
-        },
-        {
             "type": "heading",
             "label": "Marker #4",
             "description": ""
@@ -160,6 +127,12 @@
             "id": "enabled4",
             "label": "Enabled",
             "description": "Enable this marker"
+        },
+        {
+            "type": "string",
+            "id": "name4",
+            "label": "Name",
+            "description": "Name of Weather Station (will be displayed)"
         },
         {
             "type": "item",
@@ -174,23 +147,6 @@
             "description": "Glyphicon to use in the marker (without the glyphicon- prefix, examples: star, user), see https://getbootstrap.com/docs/3.3/components/"
         },
         {
-            "type": "color",
-            "id": "color4",
-            "label": "Marker color"
-        },
-        {
-            "type": "checkbox",
-            "id": "showaccuracy4",
-            "label": "Show Accuracy",
-            "description": "Display an accuracy circle (choose item below)"
-        },
-        {
-            "type": "item",
-            "id": "accuracyitem4",
-            "label": "Accuracy Item",
-            "description": "Item of type Number used for drawing an accuracy circle (radius in meters)"
-        },
-        {
             "type": "heading",
             "label": "Marker #5",
             "description": ""
@@ -200,6 +156,12 @@
             "id": "enabled5",
             "label": "Enabled",
             "description": "Enable this marker"
+        },
+        {
+            "type": "string",
+            "id": "name5",
+            "label": "Name",
+            "description": "Name of Weather Station (will be displayed)"
         },
         {
             "type": "item",
@@ -214,23 +176,6 @@
             "description": "Glyphicon to use in the marker (without the glyphicon- prefix, examples: star, user), see https://getbootstrap.com/docs/3.3/components/"
         },
         {
-            "type": "color",
-            "id": "color5",
-            "label": "Marker color"
-        },
-        {
-            "type": "checkbox",
-            "id": "showaccuracy5",
-            "label": "Show Accuracy",
-            "description": "Display an accuracy circle (choose item below)"
-        },
-        {
-            "type": "item",
-            "id": "accuracyitem5",
-            "label": "Accuracy Item",
-            "description": "Item of type Number used for drawing an accuracy circle (radius in meters)"
-        },
-        {
             "type": "heading",
             "label": "Marker #6",
             "description": ""
@@ -240,6 +185,12 @@
             "id": "enabled6",
             "label": "Enabled",
             "description": "Enable this marker"
+        },
+        {
+            "type": "string",
+            "id": "name6",
+            "label": "Name",
+            "description": "Name of Weather Station (will be displayed)"
         },
         {
             "type": "item",
@@ -254,21 +205,62 @@
             "description": "Glyphicon to use in the marker (without the glyphicon- prefix, examples: star, user), see https://getbootstrap.com/docs/3.3/components/"
         },
         {
-            "type": "color",
-            "id": "color6",
-            "label": "Marker color"
+            "type": "heading",
+            "label": "Marker #7",
+            "description": ""
         },
         {
             "type": "checkbox",
-            "id": "showaccuracy6",
-            "label": "Show Accuracy",
-            "description": "Display an accuracy circle (choose item below)"
+            "id": "enabled7",
+            "label": "Enabled",
+            "description": "Enable this marker"
+        },
+        {
+            "type": "string",
+            "id": "name7",
+            "label": "Name",
+            "description": "Name of Weather Station (will be displayed)"
         },
         {
             "type": "item",
-            "id": "accuracyitem6",
-            "label": "Accuracy Item",
-            "description": "Item of type Number used for drawing an accuracy circle (radius in meters)"
+            "id": "item7",
+            "label": "openHAB Item",
+            "description": "Item of type Location (or String with latitude,longitude)"
+        },
+        {
+            "type": "string",
+            "id": "icon7",
+            "label": "Marker icon",
+            "description": "Glyphicon to use in the marker (without the glyphicon- prefix, examples: star, user), see https://getbootstrap.com/docs/3.3/components/"
+        },
+        {
+            "type": "heading",
+            "label": "Marker #8",
+            "description": ""
+        },
+        {
+            "type": "checkbox",
+            "id": "enabled8",
+            "label": "Enabled",
+            "description": "Enable this marker"
+        },
+        {
+            "type": "string",
+            "id": "name8",
+            "label": "Name",
+            "description": "Name of Weather Station (will be displayed)"
+        },
+        {
+            "type": "item",
+            "id": "item8",
+            "label": "openHAB Item",
+            "description": "Item of type Location (or String with latitude,longitude)"
+        },
+        {
+            "type": "string",
+            "id": "icon8",
+            "label": "Marker icon",
+            "description": "Glyphicon to use in the marker (without the glyphicon- prefix, examples: star, user), see https://getbootstrap.com/docs/3.3/components/"
         }
     ]
 }

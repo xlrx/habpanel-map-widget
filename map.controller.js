@@ -32,13 +32,18 @@
         function updateValues() {
             leafletData.getMap().then(function(map) {
                 $timeout(function () {
-                    for (var i = 1; i <= 6; i++) {
+                    for (var i = 1; i <= 8; i++) {
                         if ($scope.config['item' + i]) {
                             var item = OHService.getItem($scope.config['item' + i]);
-                            var accuracyItem = ($scope.config['showaccuracy' + i]) ? OHService.getItem($scope.config['accuracyitem' + i]) : null;
+                            var pref = $scope.config['item' + i].split('_')
+                            var prefix = pref[0] + "_" + pref[1] + "_" + pref[2] + "_" + pref[3] + "_" + pref[4]
+                            var name = $scope.config['name' + i]
+                            
+                            //var accuracyItem = ($scope.config['showaccuracy' + i]) ? OHService.getItem($scope.config['accuracyitem' + i]) : null;
 
                             if (item && item.state.indexOf(',') && $scope.config['enabled' + i] === true &&
-                                (item.state !== itemStates[item.name] || (accuracyItem && accuracyItem.state !== accuracyStates[accuracyItem.name]))) {
+                                //(item.state !== itemStates[item.name] || (accuracyItem && accuracyItem.state !== accuracyStates[accuracyItem.name]))) {
+                                item.state !== itemStates[item.name]) {
                                 itemStates[item.name] = item.state;
 
                                 if (!ready) {
@@ -48,12 +53,29 @@
 
                                 var icon = {
                                     type: 'vectorMarker',
-                                    prefix: 'glyphicon'
+                                    prefix: 'glyphicon',
+                                    icon: 'glyphicon-signal'
                                 };
 
-                                if ($scope.config['color' + i]) {
-                                    icon.markerColor = $scope.config['color' + i];
-                                }
+                                var SItem = OHService.getItem(prefix + "_S");
+
+                                //console.log("HUHU" + SItem.state );
+                                if(SItem.state === '0.0') {
+                                    icon.markerColor = '#008000';
+                                } else if(SItem.state === '1.0') {
+                                    icon.markerColor = '#b0e2ff';
+                                } else if(SItem.state == '2.0') {
+                                    icon.markerColor = '#1ba1e2';
+                                } else if(SItem.state == '3.0') {
+                                    icon.markerColor = '#f67731';
+                                } else if(SItem.state == '4.0') {
+                                    icon.markerColor = '#ff7373';
+                                } else if(SItem.state == '5.0') {
+                                    icon.markerColor = '#ff4162';
+                                } 
+                                //if ($scope.config['color' + i]) {
+                                //    icon.markerColor = $scope.config['color' + i];
+                                //}
                                 if ($scope.config['icon' + i]) {
                                     icon.icon = $scope.config['icon' + i];
                                 };
@@ -64,15 +86,27 @@
                                 if (isNaN(lat) || isNaN(lng)) {
                                     continue;
                                 }
+                                
+                                var precipItem = OHService.getItem(prefix + "_W");
+                                var TTTItem = OHService.getItem(prefix + "_TTT");
+                                var TTTbItem = OHService.getItem(prefix + "_TTTb");
+                                var TTTuItem = OHService.getItem(prefix + "_TTTu");
+                                var FItem = OHService.getItem(prefix + "_F");
 
                                 vm.markers[item.name] = {
                                     lat: parseFloat(item.state.split(',')[0]),
                                     lng: parseFloat(item.state.split(',')[1]),
-                                    message: item.label,
+                                    //message: item.label,
+                                    message: "<h2 style='color:#000'>" + name + "</h2>Zustand: " + SItem.transformedState + 
+                                    "<br/>Niederschlagsart: " + precipItem.transformedState + 
+                                    "<br/>Lufttemperatur: " + TTTItem.state + 
+                                    "<br/>Belagstemperatur: " + TTTbItem.state + 
+                                    "<br/>Untergrundtemperatur: " + TTTuItem.state + 
+                                    "<br/>Funktionszustand: " + FItem.transformedState,
                                     icon: icon
                                 };
 
-                                if (accuracyItem && accuracyItem.type === 'Number' && parseFloat(accuracyItem.state) > 0) {
+                                /*if (accuracyItem && accuracyItem.type === 'Number' && parseFloat(accuracyItem.state) > 0) {
                                     vm.paths[item.name] = {
                                         type: 'circle',
                                         radius: parseFloat(accuracyItem.state),
@@ -81,7 +115,7 @@
                                         weight: 2
                                     };
                                     accuracyStates[accuracyItem.name] = accuracyItem.state;
-                                }
+                                }*/
 
                             }
                         }

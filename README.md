@@ -1,15 +1,17 @@
-# Map Widget for HABPanel
+# DWD Strassenwetterdienst Widget for HABPanel
 
-This widget will display a map from OpenStreetMap with up to 6 configurable markers positioned using openHAB Location items.
+This widget is forked from *ghys/habpanel-map-widget* (credits to Yannick Schaus) and will display a map from OpenStreetMap with up to 8 configurable DWD SWS road sensors positioned using openHAB Location items.
 
-The marker will update in real time whenever the state of the underlying item changes. Clicking on a marker will reveal the label of the item in a tooltip.
+The markers will update in real time whenever the state of the underlying item changes. Clicking on a marker will reveal the label of the item in a tooltip.
+
+Important: make sure you use the items and rules (ensure the same naming convention style) from https://community.openhab.org/t/howto-road-reconnaissance-report-for-german-roads/81233
 
 ## Installation
 
 Make sure the `git` command is available on your system, Clone this repository into your openHAB's `html` configuration folder:
 
     $ cd /etc/openhab/html
-    $ git clone https://github.com/ghys/habpanel-map-widget
+    $ git clone https://github.com/xlrx/habpanel-map-widget
 
 (*the /etc/openhab/html is where the folder is on Linux package installations, change as necessary. See https://docs.openhab.org/installation/linux.html#file-locations*).
 
@@ -39,12 +41,13 @@ https://www.openstreetmap.org/search?query=paris%2C%20france#map=12/48.8589/2.34
 
 Here you can see the zoom level is 12, the latitude is 48.8589, and the longitude is 2.3469.
 
-The other sections are for the 6 possible markers, each with these options:
+The other sections are for the 8 possible markers, each with these options:
 
 - **Enabled:** click to enable the marker
+- **Name:** the display name of the marker
 - **openHAB item:** choose an item holding the position of the marker - either a Location item or a String with the position in 'latitude,longitude' format
 - **Marker icon:** choose a Glyphicon to display: examples include *user*, *tag*, *star*. See the full list of available icons at https://getbootstrap.com/docs/3.3/components/
-- **Marker color:** the color of the marker
+
 
 ## Acknowledgements
 
